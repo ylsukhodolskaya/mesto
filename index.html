@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
+
 <body class="page">
   <header class="header">
     <img src="./images/Mesto__logo.svg" alt="Лого Место" class="header__logo">
@@ -19,53 +21,92 @@
   <main class="content">
     <section class="profile">
       <img src="./images/Photo-content/Avatar.JPG" alt="Аватарка" class="profile__avatar">
-      <h1 class="profile__name">Юлия Сухая</h1>
-      <p class="profile__description">Режиссёр монтажа, танцовщица, фронтенд-разработчик</p>
-      <img src="./images/Edit Button.svg" alt="Редактировать профиль" class="profile__edit-button">
-      <img src="./images/Add Button.svg" alt="Добавить фото" class="profile__add-button">
+      <div class="profile__info">
+        <div class="profile__name-edit-button">
+          <h1 class="profile__name">Юлия Сухая</h1>
+          <button class="profile__edit-button"></button>
+        </div>
+        <p class="profile__description">Режиссёр монтажа, танцовщица, фронтенд-разработчик</p>
+      </div>
+      <button class="profile__add-button">
+      </button>
     </section>
-    
+
+    <section class="edit-form">
+      <div class="edit-form__container">
+        <button class="edit-form__close"></button>
+        <form action="" class="edit-form__form">
+          <h2 class="edit-form__title">Редактировать профиль</h2>
+          <label for="" class="edit-form__label">
+            <input type="text" class="edit-form__input">
+          </label>
+          <label for="" class="edit-form__label">
+            <input type="text" class="edit-form__input">
+          </label>
+          <button class="edit-form__save">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
     <section class="elements">
       <div class="element">
-        <img src="./images/Photo-content/Crimea.JPG" alt="Крым" class="element__image">
+        <img src="./images/Photo-content/Crimea.jpeg" alt="Крым" class="element__image">
         <div class="element__name">
           <h2 class="element__title">Крым</h2>
-          <img src="./images/Like.svg" alt="Нравится" class="element__like">
+          <label class="element__label">
+            <input type="checkbox" class="element__invisible-checkbox">
+            <span class="element__like"></span>
+          </label>
         </div>
       </div>
       <div class="element">
         <img src="./images/Photo-content/Finland.JPG" alt="Финляндия" class="element__image">
         <div class="element__name">
           <h2 class="element__title">Финляндия</h2>
-          <img src="./images/Like.svg" alt="Нравится" class="element__like">
+          <label class="element__label">
+            <input type="checkbox" class="element__invisible-checkbox">
+            <span class="element__like"></span>
+          </label>
         </div>
       </div>
       <div class="element">
         <img src="./images/Photo-content/Gelendzhik.JPG" alt="Геленджик" class="element__image">
         <div class="element__name">
           <h2 class="element__title">Геленджик</h2>
-          <img src="./images/Like.svg" alt="Нравится" class="element__like">
+          <label class="element__label">
+            <input type="checkbox" class="element__invisible-checkbox">
+            <span class="element__like"></span>
+          </label>
         </div>
       </div>
       <div class="element">
-        <img src="./images/Photo-content/Georgia.PNG" alt="Грузия" class="element__image">
+        <img src="./images/Photo-content/Georgia.jpeg" alt="Грузия" class="element__image">
         <div class="element__name">
           <h2 class="element__title">Грузия</h2>
-          <img src="./images/Like.svg" alt="Нравится" class="element__like">
+          <label class="element__label">
+            <input type="checkbox" class="element__invisible-checkbox">
+            <span class="element__like"></span>
+          </label>
         </div>
       </div>
       <div class="element">
-        <img src="./images/Photo-content/Sri-Lanka.PNG" alt="Шри-Ланка" class="element__image">
+        <img src="./images/Photo-content/Sri-Lanka.jpeg" alt="Шри-Ланка" class="element__image">
         <div class="element__name">
           <h2 class="element__title">Шри-Ланка</h2>
-          <img src="./images/Like.svg" alt="Нравится" class="element__like">
+          <label class="element__label">
+            <input type="checkbox" class="element__invisible-checkbox">
+            <span class="element__like"></span>
+          </label>
         </div>
       </div>
       <div class="element">
         <img src="./images/Photo-content/USA-Grand-Canyon.JPG" alt="США, Гранд-Каньон" class="element__image">
         <div class="element__name">
           <h2 class="element__title">США, Гранд-Каньон</h2>
-          <img src="./images/Like.svg" alt="Нравится" class="element__like">
+          <label class="element__label">
+            <input type="checkbox" class="element__invisible-checkbox">
+            <span class="element__like"></span>
+          </label>
         </div>
       </div>
     </section>
@@ -75,4 +116,5 @@
     </footer>
   </main>
 </body>
+
 </html>

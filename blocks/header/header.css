@@ -1,5 +1,17 @@
 .header {
   margin: 0 auto;
   padding: 45px 0 0 0;
-  width: 880px;
+  max-width: 880px;
+}
+
+@media screen and (max-width: 873px) {
+  .header {
+    max-width: 578px;
+  }
+}
+
+@media screen and (max-width: 577px) {
+  .header {
+    max-width: 282px;
+  }
 }

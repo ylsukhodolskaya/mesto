@@ -1,0 +1,9 @@
+.element__label {
+  position: absolute;
+  bottom: 35px;
+  right: 20px;
+  width: 22px;
+  height: 19px;
+  display: block;
+}
+

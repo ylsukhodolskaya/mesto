@@ -1,0 +1,27 @@
+.edit-form__save {
+  width: 100%;
+  height: 50px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #fff;
+  margin-top: 48px;
+  background-color: #000;
+  border: none;
+  border-radius: 2px;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.edit-form__save:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 577px) {
+  .edit-form__save {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
