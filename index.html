@@ -15,7 +15,6 @@
 <body class="page">
   <header class="header">
     <img src="./images/Mesto__logo.svg" alt="Лого Место" class="header__logo">
-    <hr class="header__line">
   </header>
 
   <main class="content">
@@ -24,91 +23,76 @@
       <div class="profile__info">
         <div class="profile__name-edit-button">
           <h1 class="profile__name">Юлия Сухая</h1>
-          <button class="profile__edit-button"></button>
+          <button class="button profile__edit-button"></button>
         </div>
         <p class="profile__description">Режиссёр монтажа, танцовщица, фронтенд-разработчик</p>
       </div>
-      <button class="profile__add-button">
+      <button class="button profile__add-button">
       </button>
     </section>
 
-    <section class="edit-form edit-form_hidden">
-      <div class="edit-form__container">
-        <button class="edit-form__close"></button>
-        <form class="edit-form__form">
-          <h2 class="edit-form__title">Редактировать профиль</h2>
-          <label class="edit-form__label">
-            <input type="text" class="edit-form__input edit-form__input_name" name="name" placeholder="Имя" required>
+    <div class="popup popup_hidden">
+      <div class="popup__container">
+        <button class="button popup__close-button"></button>
+        <form class="popup__form">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <label class="popup__label">
+            <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Имя" required>
           </label>
-          <label class="edit-form__label">
-            <input type="text" class="edit-form__input edit-form__input_description" name="description" placeholder="О себе">
+          <label class="popup__label">
+            <input type="text" class="popup__input popup__input_type_description" name="description"
+              placeholder="О себе">
           </label>
-          <button class="edit-form__save">Сохранить</button>
+          <button class="button popup__save-button" type="submit">Сохранить</button>
         </form>
       </div>
-    </section>
+    </div>
 
     <section class="elements">
-      <div class="element">
-        <img src="./images/Photo-content/Crimea.jpeg" alt="Крым" class="element__image">
-        <div class="element__name">
-          <h2 class="element__title">Крым</h2>
-          <label class="element__label">
-            <input type="checkbox" class="element__invisible-checkbox">
-            <span class="element__like"></span>
-          </label>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/Photo-content/Finland.JPG" alt="Финляндия" class="element__image">
-        <div class="element__name">
-          <h2 class="element__title">Финляндия</h2>
-          <label class="element__label">
-            <input type="checkbox" class="element__invisible-checkbox">
-            <span class="element__like"></span>
-          </label>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/Photo-content/Gelendzhik.JPG" alt="Геленджик" class="element__image">
-        <div class="element__name">
-          <h2 class="element__title">Геленджик</h2>
-          <label class="element__label">
-            <input type="checkbox" class="element__invisible-checkbox">
-            <span class="element__like"></span>
-          </label>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/Photo-content/Georgia.jpeg" alt="Грузия" class="element__image">
-        <div class="element__name">
-          <h2 class="element__title">Грузия</h2>
-          <label class="element__label">
-            <input type="checkbox" class="element__invisible-checkbox">
-            <span class="element__like"></span>
-          </label>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/Photo-content/Sri-Lanka.jpeg" alt="Шри-Ланка" class="element__image">
-        <div class="element__name">
-          <h2 class="element__title">Шри-Ланка</h2>
-          <label class="element__label">
-            <input type="checkbox" class="element__invisible-checkbox">
-            <span class="element__like"></span>
-          </label>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/Photo-content/USA-Grand-Canyon.JPG" alt="США, Гранд-Каньон" class="element__image">
-        <div class="element__name">
-          <h2 class="element__title">США, Гранд-Каньон</h2>
-          <label class="element__label">
-            <input type="checkbox" class="element__invisible-checkbox">
-            <span class="element__like"></span>
-          </label>
-        </div>
-      </div>
+      <ul class="elements-list">
+        <li class="element">
+          <img src="./images/Photo-content/Crimea.jpeg" alt="Крым" class="element__image">
+          <div class="element__name">
+            <h2 class="element__title">Крым</h2>
+            <button class="button element__like-button"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/Photo-content/Finland.JPG" alt="Финляндия" class="element__image">
+          <div class="element__name">
+            <h2 class="element__title">Финляндия</h2>
+            <button class="button element__like-button"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/Photo-content/Gelendzhik.JPG" alt="Геленджик" class="element__image">
+          <div class="element__name">
+            <h2 class="element__title">Геленджик</h2>
+            <button class="button element__like-button"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/Photo-content/Georgia.jpeg" alt="Грузия" class="element__image">
+          <div class="element__name">
+            <h2 class="element__title">Грузия</h2>
+            <button class="button element__like-button"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/Photo-content/Sri-Lanka.jpeg" alt="Шри-Ланка" class="element__image">
+          <div class="element__name">
+            <h2 class="element__title">Шри-Ланка</h2>
+            <button class="button element__like-button"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/Photo-content/USA-Grand-Canyon.JPG" alt="США, Гранд-Каньон" class="element__image">
+          <div class="element__name">
+            <h2 class="element__title">США, Гранд-Каньон</h2>
+            <button class="button element__like-button"></button>
+          </div>
+        </li>
+      </ul>
     </section>
 
     <footer class="footer">

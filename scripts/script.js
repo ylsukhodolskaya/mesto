@@ -1,41 +1,37 @@
 const buttonEditProfile = document.querySelector('.profile__edit-button');
-const editForm = document.querySelector('.edit-form');
-const buttonEditFormClose = document.querySelector('.edit-form__close')
+const popup = document.querySelector('.popup');
+const buttonPopupClose = document.querySelector('.popup__close-button')
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
-let nameInput = document.querySelector('.edit-form__input_name')
-let descriptionInput = document.querySelector('.edit-form__input_description')
+let nameInput = document.querySelector('.popup__input_type_name')
+let descriptionInput = document.querySelector('.popup__input_type_description')
 
 
-function closeEditFormOnQ(e) {
+function closePopupOnEsc(e) {
   if (e.code === 'Escape') {
-    closeEditForm();
+    closePopup();
   }
 }
 
-function openEditForm() {
-  editForm.classList.remove('edit-form_hidden');
-  document.addEventListener('keydown', closeEditFormOnQ);
+function openPopup() {
+  popup.classList.remove('popup_hidden');
+  document.addEventListener('keydown', closePopupOnEsc);
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
 }
 
-function closeEditForm() {
-  editForm.classList.add('edit-form_hidden');
-  document.removeEventListener('keydown', closeEditFormOnQ);
+function closePopup() {
+  popup.classList.add('popup_hidden');
+  document.removeEventListener('keydown', closePopupOnEsc);
 }
 
-buttonEditProfile.addEventListener('click', function () {
-  openEditForm();
-})
+buttonEditProfile.addEventListener('click', openPopup)
 
-buttonEditFormClose.addEventListener('click', function () {
-  closeEditForm();
-})
+buttonPopupClose.addEventListener('click', closePopup)
 
-editForm.addEventListener('click', function (e) {
+popup.addEventListener('click', function (e) {
   if (e.target === e.currentTarget) {
-    closeEditForm();
+    closePopup();
   }
 })
 
@@ -43,9 +39,19 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
-  closeEditForm();
+  closePopup();
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-editForm.addEventListener('submit', formSubmitHandler);
+
+popup.addEventListener('submit', formSubmitHandler);
+
+
+
+let elementsList = document.querySelector('.elements-list')
+
+elementsList.onclick = function(event) {
+  let target = event.target;
+  if (target.classList[1] == 'element__like-button') {
+  target.classList.toggle('element__like-button_active')
+  }
+}
