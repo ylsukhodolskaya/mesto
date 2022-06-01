@@ -46,12 +46,9 @@ function formSubmitHandler(evt) {
 popup.addEventListener('submit', formSubmitHandler);
 
 
-
-let elementsList = document.querySelector('.elements-list')
-
-elementsList.onclick = function(event) {
-  let target = event.target;
-  if (target.classList[1] == 'element__like-button') {
-  target.classList.toggle('element__like-button_active')
-  }
+let buttons = document.querySelectorAll('.element__like-button')
+for (let i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('click', function(event) {
+    event.currentTarget.classList.toggle('element__like-button_active')
+  }); 
 }
