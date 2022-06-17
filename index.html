@@ -31,9 +31,9 @@
       </button>
     </section>
 
-    <div class="popup popup_hidden">
+    <div class="popup popup_hidden edit-form">
       <div class="popup__container">
-        <button class="button popup__close-button"></button>
+        <button class="button popup__close-button edit-form__close-button"></button>
         <form class="popup__form">
           <h2 class="popup__title">Редактировать профиль</h2>
           <label class="popup__label">
@@ -48,58 +48,35 @@
       </div>
     </div>
 
+    <div class="popup popup_hidden  card-item-form">
+      <div class="popup__container">
+        <button class="button popup__close-button card-item-form__close-button"></button>
+        <form class="popup__form" name="place">
+          <h2 class="popup__title">Новое место</h2>
+          <label class="popup__label">
+            <input type="text" class="popup__input popup__input_type_title" name="title" placeholder="Название" required>
+          </label>
+          <label class="popup__label">
+            <input type="url" class="popup__input popup__input_type_link" name="link"
+              placeholder="Ссылка на картинку" required>
+          </label>
+          <button class="button popup__save-button" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+
     <section class="elements">
       <ul class="elements-list">
-        <!-- <li class="element">
-          <img src="./images/Photo-content/Crimea.jpeg" alt="Крым" class="element__image">
-          <button class="button element__delete-button"></button>
-          <div class="element__name">
-            <h2 class="element__title">Крым</h2>
-            <button class="button element__like-button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/Photo-content/Finland.JPG" alt="Финляндия" class="element__image">
-          <button class="button element__delete-button"></button>
-          <div class="element__name">
-            <h2 class="element__title">Финляндия</h2>
-            <button class="button element__like-button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/Photo-content/Gelendzhik.JPG" alt="Геленджик" class="element__image">
-          <button class="button element__delete-button"></button>
-          <div class="element__name">
-            <h2 class="element__title">Геленджик</h2>
-            <button class="button element__like-button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/Photo-content/Georgia.jpeg" alt="Грузия" class="element__image">
-          <button class="button element__delete-button"></button>
-          <div class="element__name">
-            <h2 class="element__title">Грузия</h2>
-            <button class="button element__like-button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/Photo-content/Sri-Lanka.jpeg" alt="Шри-Ланка" class="element__image">
-          <button class="button element__delete-button"></button>
-          <div class="element__name">
-            <h2 class="element__title">Шри-Ланка</h2>
-            <button class="button element__like-button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/Photo-content/USA-Grand-Canyon.JPG" alt="США, Гранд-Каньон" class="element__image">
-          <button class="button element__delete-button"></button>
-          <div class="element__name">
-            <h2 class="element__title">США, Гранд-Каньон</h2>
-            <button class="button element__like-button"></button>
-          </div>
-        </li> -->
       </ul>
     </section>
+
+    <div class="popup popup_hidden  popup_image">
+      <div class="popup__container popup__container_image">
+          <button class="button popup__close-button button_close-image-popup popup-image__close-button"></button>
+          <img class="popup__picture">
+          <h3 class="popup__picture-title"></h3>
+      </div>
+  </div>
 
     <footer class="footer">
       <p class="footer__copyright">© 2022 Mesto Russia</p>
