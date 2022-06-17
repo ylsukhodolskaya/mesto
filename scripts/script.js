@@ -40,7 +40,7 @@ const profileDescription = document.querySelector('.profile__description');
 const nameInput = document.querySelector('.popup__input_type_name');
 const descriptionInput = document.querySelector('.popup__input_type_description');
 
-const buttonClosePopupImage = document.querySelector('.popup-image__close-button')
+const buttonClosePopupImage = document.querySelector('.button_close-image-popup')
 const popupImage = document.querySelector('.popup_image');
 
 // рендер карточек из массива
@@ -78,6 +78,7 @@ function renderCard(item) {
   elementImage.addEventListener('click', () => {
       bigPicture.src = item.link;
       bigPictureTitle.innerText = item.name;
+      bigPicture.alt = item.name;
       openPopup(popupImage);
     });
   };
