@@ -51,13 +51,11 @@ function render() {
 
 // рендер карточек
 function renderCard(item) {
-  console.log('рисую карточку', item)
   const cardElement = elementTemplate.querySelector(".element").cloneNode(true);
   cardElement.querySelector(".element__title").innerText = item.name;
   cardElement.querySelector(".element__image").src = item.link;
   cardElement.querySelector(".element__image").alt = item.name;
   elementsList.prepend(cardElement);
-  console.log(cardElement);
 
   const buttonsLike = document.querySelector('.element__like-button');
   buttonsLike.addEventListener('click', (evt) => {
@@ -75,14 +73,14 @@ function renderCard(item) {
 
   const bigPicture = popupImage.querySelector('.popup__picture');
   const bigPictureTitle = popupImage.querySelector('.popup__picture-title');
-  
-  
+
+
   cardElement.addEventListener('click', () => {
-      bigPicture.src = item.link;
-      bigPictureTitle.innerText = item.name;
-      openPopup(popupImage);
-    });
-  };
+    bigPicture.src = item.link;
+    bigPictureTitle.innerText = item.name;
+    openPopup(popupImage);
+  });
+};
 
 render();
 
@@ -92,7 +90,6 @@ render();
 // функция создания новой карточки
 function createItem(e) {
   e.preventDefault();
-  console.log('отправка формы', titleInput.value, linkInput.value);
   const item = {
     name: titleInput.value,
     link: linkInput.value
@@ -142,7 +139,7 @@ buttonAddCardItem.addEventListener('click', () => {
   openPopup(cardItemForm);
 })
 
- 
+
 // закрываем форму создания карточки при нажатии на крестик
 buttonCloseCardItem.addEventListener('click', () => {
   closePopup(cardItemForm)
@@ -208,6 +205,3 @@ editForm.addEventListener('submit', submitHandlerForm);
 buttonClosePopupImage.addEventListener('click', () => {
   closePopup(popupImage)
 })
-
-
-
