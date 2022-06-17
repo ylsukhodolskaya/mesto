@@ -73,14 +73,14 @@ function renderCard(item) {
 
   const bigPicture = popupImage.querySelector('.popup__picture');
   const bigPictureTitle = popupImage.querySelector('.popup__picture-title');
-
-
-  cardElement.addEventListener('click', () => {
-    bigPicture.src = item.link;
-    bigPictureTitle.innerText = item.name;
-    openPopup(popupImage);
-  });
-};
+  const elementImage = document.querySelector('.element__image')
+  
+  elementImage.addEventListener('click', () => {
+      bigPicture.src = item.link;
+      bigPictureTitle.innerText = item.name;
+      openPopup(popupImage);
+    });
+  };
 
 render();
 
@@ -139,7 +139,7 @@ buttonAddCardItem.addEventListener('click', () => {
   openPopup(cardItemForm);
 })
 
-
+ 
 // закрываем форму создания карточки при нажатии на крестик
 buttonCloseCardItem.addEventListener('click', () => {
   closePopup(cardItemForm)
@@ -205,3 +205,6 @@ editForm.addEventListener('submit', submitHandlerForm);
 buttonClosePopupImage.addEventListener('click', () => {
   closePopup(popupImage)
 })
+
+
+
