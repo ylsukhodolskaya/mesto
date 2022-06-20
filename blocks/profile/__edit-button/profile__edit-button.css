@@ -2,7 +2,9 @@
   width: 24px;
   height: 24px;
   margin: 0 0 0 18px;
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   background-image: url(../../../images/Edit_Button.svg);
   background-size: cover;
   border: none;
