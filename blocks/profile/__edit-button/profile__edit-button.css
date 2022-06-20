@@ -6,7 +6,7 @@
       -ms-grid-row-align: center;
       align-self: center;
   background-image: url(../../../images/Edit_Button.svg);
-  background-size: cover;
+  background-size: 24px 24px;
   border: none;
   background-color: #000;
 }
@@ -15,5 +15,6 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
+    background-size: 18px 18px;
   }
 }
