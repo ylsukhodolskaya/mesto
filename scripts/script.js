@@ -1,4 +1,7 @@
-const initialCards = [{
+
+
+const initialCards = [
+  {
     name: "США, Гранд-Каньон",
     link: "https://sun9-west.userapi.com/sun9-46/s/v1/ig2/N0L2cGWeA6QADRtAzLcoxk32uiSQ14EnfUDqvfexRiU6lLqaIUbYPpvMMWDHcynIcJFPHd9RSiGuC9qJaoHQ-2Gl.jpg?size=2560x1920&quality=95&type=album"
   },
@@ -23,6 +26,7 @@ const initialCards = [{
     link: "https://sun9-east.userapi.com/sun9-35/s/v1/ig2/h30HpVpev3Kyk9VbahT_imfLNHQpWclFY40zQensBhdnjZlthSIvJmXW4cBb5nt-nihkj5b_HTGT1RmaSn19DCjq.jpg?size=959x1280&quality=95&type=album"
   }
 ];
+
 
 const popups = document.querySelectorAll('.popup')
 
@@ -175,3 +179,4 @@ function submitHandlerForm(evt) {
 
 // новые данные сохраняются на странице при клике на кнопку Сохранить
 editForm.addEventListener('submit', submitHandlerForm);
+

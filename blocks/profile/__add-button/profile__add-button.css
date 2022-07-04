@@ -5,6 +5,8 @@
   background-size: cover;
   border: none;
   background-color: #000;
+  position: absolute;
+  right: 0;
 }
 
 @media screen and (max-width: 873px) {

@@ -25,7 +25,7 @@
           <h1 class="profile__name">Юлия Сухая</h1>
           <button class="button profile__edit-button"></button>
         </div>
-        <p class="profile__description">Режиссёр монтажа, танцовщица, фронтенд-разработчик</p>
+        <p class="profile__description">JS меня убьёт!</p>
       </div>
       <button class="button profile__add-button">
       </button>
@@ -34,15 +34,18 @@
     <div class="popup popup_hidden edit-form">
       <div class="popup__container">
         <button class="button popup__close-button edit-form__close-button"></button>
-        <form class="popup__form">
+        <form class="popup__form" name="profile" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <label class="popup__label">
-            <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Имя" required>
-          </label>
-          <label class="popup__label">
-            <input type="text" class="popup__input popup__input_type_description" name="description"
-              placeholder="О себе">
-          </label>
+            <label class="popup__label">
+              <input type="text" class="popup__input popup__input_type_name" name="name" id="input__name"
+                placeholder="Имя" minlength="2" maxlength="40" required>
+              <span class="input__name-error"></span>
+            </label>
+            <label class="popup__label">
+              <input type="text" class="popup__input popup__input_type_description" name="description"
+                id="input__description" placeholder="О себе" minlength="2" maxlength="200">
+              <span class="input__description-error"></span>
+            </label>
           <button class="button popup__save-button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -51,15 +54,17 @@
     <div class="popup popup_hidden  card-item-form">
       <div class="popup__container">
         <button class="button popup__close-button card-item-form__close-button"></button>
-        <form class="popup__form" id="card-item-form" name="place">
+        <form class="popup__form" id="card-item-form" name="place" novalidate>
           <h2 class="popup__title">Новое место</h2>
-          <label class="popup__label">
-            <input type="text" class="popup__input popup__input_type_title" name="title" placeholder="Название" required>
-          </label>
-          <label class="popup__label">
-            <input type="url" class="popup__input popup__input_type_link" name="link"
-              placeholder="Ссылка на картинку" required>
-          </label>
+            <label class="popup__label">
+              <input type="text" class="popup__input popup__input_type_title" name="title" placeholder="Название" minlength="2" maxlength="30" id="input__title" required>
+              <span class="input__title-error"></span>
+            </label>
+            <label class="popup__label">
+              <input type="url" class="popup__input popup__input_type_link" name="link" id="input__link"
+                placeholder="Ссылка на картинку" required>
+              <span class="input__link-error"></span>
+            </label>
           <button class="button popup__save-button" type="submit">Создать</button>
         </form>
       </div>
@@ -72,11 +77,11 @@
 
     <div class="popup popup_hidden  popup_image">
       <div class="popup__container popup__container_image">
-          <button class="button popup__close-button button_close-image-popup"></button>
-          <img class="popup__picture" src="#" alt="#">
-          <div class="popup__picture-title"></div>
+        <button class="button popup__close-button button_close-image-popup"></button>
+        <img class="popup__picture" src="#" alt="#">
+        <div class="popup__picture-title"></div>
       </div>
-  </div>
+    </div>
   </main>
 
   <footer class="footer">
@@ -93,6 +98,7 @@
       </div>
     </li>
   </template>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 
