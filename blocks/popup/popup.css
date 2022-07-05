@@ -1,4 +1,6 @@
 .popup {
+  visibility: hidden;
+  opacity: 0;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -13,9 +15,9 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }

@@ -14,6 +14,7 @@
     background-image: url(../../../images/Add_Button_Mobile.svg);
     width: 282px;
     margin-top: 40px;
+    position: relative;
   }
 }
 
