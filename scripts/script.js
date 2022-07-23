@@ -1,7 +1,4 @@
-
-
-const initialCards = [
-  {
+const initialCards = [{
     name: "США, Гранд-Каньон",
     link: "https://sun9-west.userapi.com/sun9-46/s/v1/if2/AkrtcCx1pqXactcR5KaY12NrzrMRF4GOe0ZyPPfFb9b6XoydDpNBMPyd7lKN-RuILR2JbesTbrmO4QwYjCSyOQrR.jpg?size=2560x1920&quality=95&type=album"
   },
@@ -27,6 +24,25 @@ const initialCards = [
   }
 ];
 
+enableValidation(configForm);
+
+
+
+
+
+function createCard(item) {
+  const card = new Card(configCard, item, (data) => {
+    bigPicture.src = data.link;
+    bigPictureTitle.innerText = data.name;
+    bigPicture.alt = data.name;
+    openPopup(popupImage);
+  });
+
+  const cardElement = card.getCardElement()
+  return cardElement;
+}
+
+
 
 const popups = document.querySelectorAll('.popup')
 
@@ -44,7 +60,11 @@ const profileDescription = document.querySelector('.profile__description');
 const nameInput = document.querySelector('.popup__input_type_name');
 const descriptionInput = document.querySelector('.popup__input_type_description');
 
+
 const popupImage = document.querySelector('.popup_image');
+const bigPicture = popupImage.querySelector('.popup__picture');
+const bigPictureTitle = popupImage.querySelector('.popup__picture-title');
+
 
 // рендер карточек из массива
 function render() {
@@ -55,40 +75,7 @@ function render() {
 }
 
 
-// создание карточек
-function createCard(item) {
-  const cardElement = elementTemplate.querySelector(".element").cloneNode(true);
-  const buttonsLike = cardElement.querySelector('.element__like-button');
-  const buttonsDelete = cardElement.querySelector('.element__delete-button');
-  const bigPicture = popupImage.querySelector('.popup__picture');
-  const bigPictureTitle = popupImage.querySelector('.popup__picture-title');
-  const elementImage = cardElement.querySelector('.element__image');
 
-  cardElement.querySelector(".element__title").innerText = item.name;
-  elementImage.src = item.link;
-  elementImage.alt = item.name;
-
-
-  // кнопки like
-  buttonsLike.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__like-button_active');
-  });
-
-  // кнопки delete
-  buttonsDelete.addEventListener('click', () => {
-    cardElement.remove();
-  });
-
-
-  // попапы с полноразмерными фотографиями
-  elementImage.addEventListener('click', () => {
-    bigPicture.src = item.link;
-    bigPictureTitle.innerText = item.name;
-    bigPicture.alt = item.name;
-    openPopup(popupImage);
-  });
-  return cardElement;
-};
 
 render();
 
@@ -143,7 +130,7 @@ buttonAddCardItem.addEventListener('click', () => {
   const cardItemFormSubmit = cardItemForm.querySelector('.popup__save-button');
   openPopup(cardItemForm);
   //дезактивируем кнопку "Создать" при открытии попапа
-  disabledButton(cardItemFormSubmit, config); 
+  disabledButton(cardItemFormSubmit, configForm);
 })
 
 
@@ -168,6 +155,9 @@ function openEditForm() {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
   openPopup(formEdit);
+  //кнопка Сохранить активна при каждом открытии попапа
+  const formEditSubmit = formEdit.querySelector('.popup__save-button');
+  enableButton(formEditSubmit, configForm);
 }
 
 
