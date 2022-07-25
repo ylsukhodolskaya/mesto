@@ -24,7 +24,11 @@ const initialCards = [{
   }
 ];
 
-enableValidation(configForm);
+const editFormValidator = new FormValidator(configForm, document.querySelector('.popup__form_edit-profile'));
+editFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(configForm, document.querySelector('.popup__form_add-card'));
+addCardFormValidator.enableValidation();
 
 
 
@@ -127,10 +131,12 @@ function closePopup(popup) {
 
 // открывается попап создания новой карточки
 buttonAddCardItem.addEventListener('click', () => {
-  const cardItemFormSubmit = cardItemForm.querySelector('.popup__save-button');
+  // const cardItemFormSubmit = cardItemForm.querySelector('.popup__save-button');
   openPopup(cardItemForm);
-  //дезактивируем кнопку "Создать" при открытии попапа
-  disabledButton(cardItemFormSubmit, configForm);
+  // //дезактивируем кнопку "Создать" при открытии попапа
+  addCardFormValidator.disabledButton();
+  addCardFormValidator.resetValidation();
+
 })
 
 
@@ -156,8 +162,8 @@ function openEditForm() {
   descriptionInput.value = profileDescription.textContent;
   openPopup(formEdit);
   //кнопка Сохранить активна при каждом открытии попапа
-  const formEditSubmit = formEdit.querySelector('.popup__save-button');
-  enableButton(formEditSubmit, configForm);
+  // const formEditSubmit = formEdit.querySelector('.popup__save-button');
+  editFormValidator.enableButton();
 }
 
 

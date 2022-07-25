@@ -25,7 +25,7 @@
           <h1 class="profile__name">Юлия Сухая</h1>
           <button class="button profile__edit-button"></button>
         </div>
-        <p class="profile__description">JS меня убьёт! Или просто покалечит :'-)</p>
+        <p class="profile__description">JS меня убьёт!</p>
       </div>
       <button class="button profile__add-button">
       </button>
@@ -34,7 +34,7 @@
     <div class="popup edit-form">
       <div class="popup__container">
         <button class="button popup__close-button edit-form__close-button"></button>
-        <form class="popup__form" name="profile" novalidate>
+        <form class="popup__form popup__form_edit-profile" name="profile" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
           <label class="popup__label">
             <input type="text" class="popup__input popup__input_type_name" name="name" id="input-name" placeholder="Имя"
@@ -54,7 +54,7 @@
     <div class="popup card-item-form">
       <div class="popup__container">
         <button class="button popup__close-button card-item-form__close-button"></button>
-        <form class="popup__form" id="card-item-form" name="place" novalidate>
+        <form class="popup__form popup__form_add-card" id="card-item-form" name="place" novalidate>
           <h2 class="popup__title">Новое место</h2>
           <label class="popup__label">
             <input type="text" class="popup__input popup__input_type_title" name="title" placeholder="Название"
@@ -103,7 +103,7 @@
   <!-- <script src="./scripts/validate.js"></script> -->
   <script src="./scripts/FormValidator.js"></script>
   <script src="./scripts/Card.js"></script>
-  <script src="./scripts/script.js"></script>
+  <script type="module" src="./scripts/script.js"></script>
 
 </body>
 
