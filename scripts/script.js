@@ -167,6 +167,7 @@ function openEditForm() {
   //кнопка Сохранить активна при каждом открытии попапа
   // const formEditSubmit = formEdit.querySelector('.popup__save-button');
   editFormValidator.enableButton();
+  editFormValidator.resetValidation();
 }
 
 
