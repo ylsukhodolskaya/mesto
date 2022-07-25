@@ -23,6 +23,9 @@ const initialCards = [{
     link: "https://sun9-east.userapi.com/sun9-35/s/v1/if2/HuCCLn3a6vIqV035LyMD0B7XXXC0D091sF-FoUYk78R-SPuT_zmeYlo1RXiJ3GROALP92Z7WEtU8bALioJ9SwA_W.jpg?size=959x1280&quality=95&type=album"
   }
 ];
+import { configForm, configCard } from './constants.js';
+import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js'
 
 const editFormValidator = new FormValidator(configForm, document.querySelector('.popup__form_edit-profile'));
 editFormValidator.enableValidation();

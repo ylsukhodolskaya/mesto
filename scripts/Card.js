@@ -1,4 +1,4 @@
-class Card {
+export class Card {
   constructor(config, item, handlerClickImage) {
     this._config = config;
     this._handlerClickImage = handlerClickImage;

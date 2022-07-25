@@ -1,4 +1,4 @@
-const configForm = {
+export const configForm = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
@@ -8,7 +8,7 @@ const configForm = {
 };
 
 
-const configCard = {
+export const configCard = {
   templateSelector: '#template-element',
   cardSelector: '.element',
   buttonLikeSelector: '.element__like-button',
