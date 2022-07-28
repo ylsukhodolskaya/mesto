@@ -1,3 +1,16 @@
+import {
+  configForm,
+  configCard
+} from './constants.js';
+
+import {
+  FormValidator
+} from './FormValidator.js';
+
+import {
+  Card
+} from './Card.js'
+
 const initialCards = [{
     name: "США, Гранд-Каньон",
     link: "https://sun9-west.userapi.com/sun9-46/s/v1/if2/AkrtcCx1pqXactcR5KaY12NrzrMRF4GOe0ZyPPfFb9b6XoydDpNBMPyd7lKN-RuILR2JbesTbrmO4QwYjCSyOQrR.jpg?size=2560x1920&quality=95&type=album"
@@ -23,19 +36,27 @@ const initialCards = [{
     link: "https://sun9-east.userapi.com/sun9-35/s/v1/if2/HuCCLn3a6vIqV035LyMD0B7XXXC0D091sF-FoUYk78R-SPuT_zmeYlo1RXiJ3GROALP92Z7WEtU8bALioJ9SwA_W.jpg?size=959x1280&quality=95&type=album"
   }
 ];
-import { configForm, configCard } from './constants.js';
-import { FormValidator } from './FormValidator.js';
-import { Card } from './Card.js'
+const popups = document.querySelectorAll('.popup')
+const cardsContainer = document.querySelector(".elements-list");
+const buttonAddCardItem = document.querySelector('.profile__add-button');
+const popupAddCard = document.querySelector('.popup-add-card');
+const titleInput = document.querySelector('.popup__input_type_title');
+const linkInput = document.querySelector('.popup__input_type_link');
+const buttonEditProfile = document.querySelector('.profile__edit-button');
+const popupEditProfile = document.querySelector('.popup-edit-profile');
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__description');
+const nameInput = document.querySelector('.popup__input_type_name');
+const descriptionInput = document.querySelector('.popup__input_type_description');
+const popupImage = document.querySelector('.popup_image');
+const bigPicture = popupImage.querySelector('.popup__picture');
+const bigPictureTitle = popupImage.querySelector('.popup__picture-title');
 
-const editFormValidator = new FormValidator(configForm, document.querySelector('.popup__form_edit-profile'));
-editFormValidator.enableValidation();
+const formEditProfileValidator = new FormValidator(configForm, popupEditProfile);
+formEditProfileValidator.enableValidation();
 
-const addCardFormValidator = new FormValidator(configForm, document.querySelector('.popup__form_add-card'));
-addCardFormValidator.enableValidation();
-
-
-
-
+const formAddCardValidator = new FormValidator(configForm, popupAddCard);
+formAddCardValidator.enableValidation();
 
 function createCard(item) {
   const card = new Card(configCard, item, (data) => {
@@ -49,30 +70,6 @@ function createCard(item) {
   return cardElement;
 }
 
-
-
-const popups = document.querySelectorAll('.popup')
-
-const elementsList = document.querySelector(".elements-list");
-const elementTemplate = document.querySelector("#template-element").content;
-const buttonAddCardItem = document.querySelector('.profile__add-button');
-const cardItemForm = document.querySelector('.card-item-form');
-const titleInput = document.querySelector('.popup__input_type_title');
-const linkInput = document.querySelector('.popup__input_type_link');
-
-const buttonEditProfile = document.querySelector('.profile__edit-button');
-const formEdit = document.querySelector('.edit-form');
-const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__description');
-const nameInput = document.querySelector('.popup__input_type_name');
-const descriptionInput = document.querySelector('.popup__input_type_description');
-
-
-const popupImage = document.querySelector('.popup_image');
-const bigPicture = popupImage.querySelector('.popup__picture');
-const bigPictureTitle = popupImage.querySelector('.popup__picture-title');
-
-
 // рендер карточек из массива
 function render() {
   initialCards.forEach((item) => {
@@ -81,18 +78,15 @@ function render() {
   });
 }
 
-
-
-
 render();
 
 // отрисовка карточек
 function renderCard(cardElement) {
-  elementsList.prepend(cardElement);
+  cardsContainer.prepend(cardElement);
 }
 
 // функция создания новой карточки
-function formAddPlaceHandler(e) {
+function handleFormAddPlace(e) {
   e.preventDefault();
   const item = {
     name: titleInput.value,
@@ -100,15 +94,12 @@ function formAddPlaceHandler(e) {
   };
   const place = createCard(item);
   document.forms.place.reset();
-  closePopup(cardItemForm);
+  closePopup(popupAddCard);
   renderCard(place);
 }
 
-
-
 // создание новой карточки нажатием на кнопку Создать
-cardItemForm.addEventListener('submit', formAddPlaceHandler);
-
+popupAddCard.addEventListener('submit', handleFormAddPlace);
 
 // функция закрывает все формы при нажатии на ESC
 function closePopupOnEsc(e) {
@@ -130,18 +121,31 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupOnEsc);
 }
 
+// функция заполняет поля формы данными, которые на странице и открывает форму редактирования профиля 
+function openEditForm() {
+  nameInput.value = profileName.textContent;
+  descriptionInput.value = profileDescription.textContent;
+  openPopup(popupEditProfile);
+  formEditProfileValidator.resetValidation();
+}
 
+// функция редактирует данные профиля
+function submitHandlerForm(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = descriptionInput.value;
+  closePopup(popupEditProfile);
+}
+
+// открывается попап редактирования профиля
+buttonEditProfile.addEventListener('click', openEditForm)
 
 // открывается попап создания новой карточки
 buttonAddCardItem.addEventListener('click', () => {
   // const cardItemFormSubmit = cardItemForm.querySelector('.popup__save-button');
-  openPopup(cardItemForm);
-  // //дезактивируем кнопку "Создать" при открытии попапа
-  addCardFormValidator.disabledButton();
-  addCardFormValidator.resetValidation();
-
+  openPopup(popupAddCard);
+  formAddCardValidator.resetValidation();
 })
-
 
 // закрываем любые попапы при нажатии на крестик и свободное пространство вокруг попапа
 popups.forEach((popup) => {
@@ -152,34 +156,5 @@ popups.forEach((popup) => {
   })
 })
 
-
-
-// открывается попап редактирования профиля
-buttonEditProfile.addEventListener('click', openEditForm)
-
-
-
-// функция заполняет поля формы данными, которые на странице и открывает форму редактирования профиля 
-function openEditForm() {
-  nameInput.value = profileName.textContent;
-  descriptionInput.value = profileDescription.textContent;
-  openPopup(formEdit);
-  //кнопка Сохранить активна при каждом открытии попапа
-  // const formEditSubmit = formEdit.querySelector('.popup__save-button');
-  editFormValidator.enableButton();
-  editFormValidator.resetValidation();
-}
-
-
-// функция редактирует данные профиля
-function submitHandlerForm(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = descriptionInput.value;
-  closePopup(formEdit);
-}
-
-
 // новые данные сохраняются на странице при клике на кнопку Сохранить
-formEdit.addEventListener('submit', submitHandlerForm);
-
+popupEditProfile.addEventListener('submit', submitHandlerForm);
