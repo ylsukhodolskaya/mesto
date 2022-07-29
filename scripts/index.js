@@ -40,10 +40,12 @@ const popups = document.querySelectorAll('.popup')
 const cardsContainer = document.querySelector(".elements-list");
 const buttonAddCardItem = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup-add-card');
+const formAddCard = popupAddCard.querySelector('.popup__form_add-card');
 const titleInput = document.querySelector('.popup__input_type_title');
 const linkInput = document.querySelector('.popup__input_type_link');
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup-edit-profile');
+const formEditProfile = popupEditProfile.querySelector('.popup__form_edit-profile');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 const nameInput = document.querySelector('.popup__input_type_name');
@@ -52,10 +54,10 @@ const popupImage = document.querySelector('.popup_image');
 const bigPicture = popupImage.querySelector('.popup__picture');
 const bigPictureTitle = popupImage.querySelector('.popup__picture-title');
 
-const formEditProfileValidator = new FormValidator(configForm, popupEditProfile);
+const formEditProfileValidator = new FormValidator(configForm, formEditProfile);
 formEditProfileValidator.enableValidation();
 
-const formAddCardValidator = new FormValidator(configForm, popupAddCard);
+const formAddCardValidator = new FormValidator(configForm, formAddCard);
 formAddCardValidator.enableValidation();
 
 function createCard(item) {
@@ -93,13 +95,13 @@ function handleFormAddPlace(e) {
     link: linkInput.value
   };
   const place = createCard(item);
-  document.forms.place.reset();
+  formAddCard.reset();
   closePopup(popupAddCard);
   renderCard(place);
 }
 
 // создание новой карточки нажатием на кнопку Создать
-popupAddCard.addEventListener('submit', handleFormAddPlace);
+formAddCard.addEventListener('submit', handleFormAddPlace);
 
 // функция закрывает все формы при нажатии на ESC
 function closePopupOnEsc(e) {
@@ -157,4 +159,4 @@ popups.forEach((popup) => {
 })
 
 // новые данные сохраняются на странице при клике на кнопку Сохранить
-popupEditProfile.addEventListener('submit', submitHandlerForm);
+formEditProfile.addEventListener('submit', submitHandlerForm);
