@@ -9,7 +9,11 @@ import {
 
 import {
   Card
-} from './Card.js'
+} from './Card.js';
+
+import Section from './Section.js';
+
+
 
 const initialCards = [{
     name: "США, Гранд-Каньон",
@@ -72,15 +76,31 @@ function createCard(item) {
   return cardElement;
 }
 
-// рендер карточек из массива
-function render() {
-  initialCards.forEach((item) => {
-    const place = createCard(item);
-    renderCard(place);
-  });
-}
+// // рендер карточек из массива
+// function render() {
+//   initialCards.forEach((item) => {
+//     const place = createCard(item);
+//     renderCard(place);
+//   });
+// }
 
-render();
+// render();
+
+// отрисовка карточек из массива
+const cardsList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      cardsList.addItem(createCard(item));
+    },
+  },
+  cardsContainer
+);
+
+// загрузка карточек на страницу
+cardsList.renderItems();
+
+
 
 // отрисовка карточек
 function renderCard(cardElement) {
