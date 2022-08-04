@@ -13,6 +13,8 @@ import {
 
 import Section from './Section.js';
 
+import PopupWithImage from './PopupWithImage.js';
+
 
 
 const initialCards = [{
@@ -64,17 +66,33 @@ formEditProfileValidator.enableValidation();
 const formAddCardValidator = new FormValidator(configForm, formAddCard);
 formAddCardValidator.enableValidation();
 
+
+const viewImagePopup = new PopupWithImage(popupImage);
+viewImagePopup.setEventListeners();
+
+//создание новой карточки
 function createCard(item) {
-  const card = new Card(configCard, item, (data) => {
-    bigPicture.src = data.link;
-    bigPictureTitle.innerText = data.name;
-    bigPicture.alt = data.name;
-    openPopup(popupImage);
+  const card = new Card(configCard, item, {
+    handlerClickImage: () => {
+      viewImagePopup.open(item)
+    }
   });
 
   const cardElement = card.getCardElement()
   return cardElement;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // рендер карточек из массива
 // function render() {
@@ -107,6 +125,8 @@ function renderCard(cardElement) {
   cardsContainer.prepend(cardElement);
 }
 
+
+
 // функция создания новой карточки
 function handleFormAddPlace(e) {
   e.preventDefault();
@@ -123,25 +143,25 @@ function handleFormAddPlace(e) {
 // создание новой карточки нажатием на кнопку Создать
 formAddCard.addEventListener('submit', handleFormAddPlace);
 
-// функция закрывает все формы при нажатии на ESC
-function closePopupOnEsc(e) {
-  if (e.code === 'Escape') {
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
-  }
-}
+// // функция закрывает все формы при нажатии на ESC
+// function closePopupOnEsc(e) {
+//   if (e.code === 'Escape') {
+//     const popup = document.querySelector('.popup_opened');
+//     closePopup(popup);
+//   }
+// }
 
-// открытие попапа
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupOnEsc);
-}
+// // открытие попапа
+// function openPopup(popup) {
+//   popup.classList.add('popup_opened');
+//   document.addEventListener('keydown', closePopupOnEsc);
+// }
 
-// закрытие попапа
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupOnEsc);
-}
+// // закрытие попапа
+// function closePopup(popup) {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('keydown', closePopupOnEsc);
+// }
 
 // функция заполняет поля формы данными, которые на странице и открывает форму редактирования профиля 
 function openEditForm() {
@@ -169,14 +189,15 @@ buttonAddCardItem.addEventListener('click', () => {
   formAddCardValidator.resetValidation();
 })
 
-// закрываем любые попапы при нажатии на крестик и свободное пространство вокруг попапа
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')) {
-      closePopup(popup)
-    }
-  })
-})
+// // закрываем любые попапы при нажатии на крестик и свободное пространство вокруг попапа
+// popups.forEach((popup) => {
+//   popup.addEventListener('mousedown', (evt) => {
+//     if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')) {
+//       closePopup(popup)
+//     }
+//   })
+// })
 
 // новые данные сохраняются на странице при клике на кнопку Сохранить
 formEditProfile.addEventListener('submit', submitHandlerForm);
+

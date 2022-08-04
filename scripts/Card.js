@@ -1,5 +1,5 @@
 export class Card {
-  constructor(config, item, handlerClickImage) {
+  constructor(config, item, {handlerClickImage}) {
     this._config = config;
     this._handlerClickImage = handlerClickImage;
     this._item = item;
@@ -49,7 +49,8 @@ export class Card {
     });
 
     // попапы с полноразмерными фотографиями
-    this._elementImage.addEventListener('click', () => this._handlerClickImage(this._item));
+    this._elementImage.addEventListener('click', () => 
+    this._handlerClickImage(this._item));
   }
 
 }
