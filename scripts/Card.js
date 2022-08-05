@@ -1,15 +1,9 @@
-export class Card {
-  constructor(config, item, {handlerClickImage}) {
+export default class Card {
+  constructor(config, name, link, { handlerClickImage }) {
     this._config = config;
     this._handlerClickImage = handlerClickImage;
-    this._item = item;
-    this._cardElement = this._getTemplate();
-    this._buttonsLike = this._cardElement.querySelector(config.buttonLikeSelector);
-    this._buttonsDelete = this._cardElement.querySelector(config.buttonDeleteSelector);
-    this._elementImage = this._cardElement.querySelector(config.imageSelector);
-    this._cardElement.querySelector(config.titleSelector).textContent = item.name;
-    this._elementImage.src = item.link;
-    this._elementImage.alt = item.name;
+    this._name = name;
+    this._link = link;
   }
 
   _getTemplate() {
@@ -21,36 +15,45 @@ export class Card {
   }
 
   getCardElement() {
+    this._cardElement = this._getTemplate();
     this._setEventListeners();
+    this._cardElement.querySelector(this._config.titleSelector).textContent = this._name;
+    this._image = this._cardElement.querySelector(this._config.imageSelector);
+    this._image.src = this._link;
+    this._image.alt = this._name;
     return this._cardElement;
   }
 
   // метод слушателя лайка
   _handleLikeCard() {
-    this._buttonsLike.classList.toggle(this._config.likeClass);
+    this._cardElement.querySelector(this._config.buttonLikeSelector).classList.toggle(this._config.likeClass);
   }
 
   // метод слушателя кнопки удалить
   _handleDeleteCard() {
     this._cardElement.remove();
-    this._cardElement = null; // При удалении экземпляра класса его дополнительно после удаления  нужно занулять. Метод remove удаляет только разметку из html, но объект карточки остается в памяти приложения и потребляет ресурсы.
+    this._cardElement = null;
   }
+
+  
 
   //cлушатели
   _setEventListeners() {
     // кнопки like
-    this._buttonsLike.addEventListener('click', () => {
+    this._cardElement.querySelector(this._config.buttonLikeSelector).addEventListener('click', () => {
       this._handleLikeCard();
     });
 
     // кнопки delete
-    this._buttonsDelete.addEventListener('click', () => {
+    this._cardElement.querySelector(this._config.buttonDeleteSelector).addEventListener('click', () => {
       this._handleDeleteCard();
     });
 
     // попапы с полноразмерными фотографиями
-    this._elementImage.addEventListener('click', () => 
-    this._handlerClickImage(this._item));
+    this._cardElement.querySelector(this._config.imageSelector).addEventListener('click', () => {
+      this._handlerClickImage()
+    });
   }
+
 
 }
