@@ -77,6 +77,7 @@ const addCardForm = new PopupWithForm(
     handleFormSubmit: () => {
       cardsList.addItem(createCard(titleInput.value, linkInput.value));
       addCardForm.close();
+      formAddCardValidator.resetValidation();
     },
   });
 // слушатели для формы добавления карточки
@@ -84,6 +85,7 @@ addCardForm.setEventListeners();
 
 buttonAddCardItem.addEventListener("click", () => {
   addCardForm.open();
+  formAddCardValidator.resetValidation();
 });
 
 const userInfo = new UserInfo({
@@ -116,4 +118,5 @@ buttonEditProfile.addEventListener("click", () => {
     description: info.description,
   });
   editProfilePopup.open();
+  formEditProfileValidator.resetValidation();
 });
