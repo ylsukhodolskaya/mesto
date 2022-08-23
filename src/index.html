@@ -18,15 +18,15 @@
 
   <main class="content">
     <section class="profile">
-      <div class="profile__photo">
+      <button class="profile__avatar-button">
       <img src="<%=require('./images/Photo-content/Avatar.jpg')%>" alt="Аватарка" class="profile__avatar">
-    </div>
+      </button>
       <div class="profile__info">
         <div class="profile__name-edit-button">
           <h1 class="profile__name">Юлия Фокс</h1>
           <button class="button profile__edit-button"></button>
         </div>
-        <p class="profile__description">А у меня ковид :'-)</p>
+        <p class="profile__description">Тра-та-та привет всем</p>
       </div>
       <button class="button profile__add-button">
       </button>
@@ -43,9 +43,9 @@
             <span class="input-name-error"></span>
           </label>
           <label class="popup__label">
-            <input type="text" class="popup__input popup__input_type_description" name="description"
-              id="input-description" placeholder="О себе" minlength="2" maxlength="200">
-            <span class="input-description-error"></span>
+            <input type="text" class="popup__input popup__input_type_description" name="about"
+              id="input-about" placeholder="О себе" minlength="2" maxlength="200">
+            <span class="input-about-error"></span>
           </label>
           <button class="button popup__save-button" type="submit">Сохранить</button>
         </form>

@@ -22,6 +22,14 @@ import {
   nameInput,
   descriptionInput,
   popupImage,
+  avatar,
+  buttonAvatar,
+  popupEditAvatar,
+  formEditAvatar
+} from '../utils/constants.js';
+
+import {
+  configApi
 } from '../utils/constants.js';
 
 import FormValidator from '../components/FormValidator.js';
@@ -36,6 +44,37 @@ import PopupWithForm from '../components/PopupWithForm.js';
 
 import UserInfo from '../components/UserInfo.js';
 
+import Api from '../components/Api.js';
+
+
+const api = new Api(configApi);
+
+// api.getInitialCards()
+//   .then((items) => {
+//     cardsList.renderItems(items);
+//     console.log('items', items)
+//   })
+//   .catch(err => console.log('Ошибка:', err))
+
+
+// api.getUserInfo().then((result) => {
+//     console.log('api.getUserInfo result', result)
+//   })
+//   .catch(err => console.log('Ошибка:', err))
+
+
+let userId;
+
+// Загрузка готовых карточек и данных о пользователе с сервера
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([initialCards, userData]) => {
+    userInfo.setUserInfo(userData);
+    userId = userData._id;
+    cardsList.renderItems(initialCards);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  });
 
 const formEditProfileValidator = new FormValidator(configForm, formEditProfile);
 formEditProfileValidator.enableValidation();
@@ -43,6 +82,9 @@ const formAddCardValidator = new FormValidator(configForm, formAddCard);
 formAddCardValidator.enableValidation();
 const viewImagePopup = new PopupWithImage(popupImage);
 viewImagePopup.setEventListeners();
+
+
+
 
 //создание новой карточки
 function createCard(name, link) {
@@ -59,7 +101,7 @@ function createCard(name, link) {
 
 // отрисовка карточек из массива
 const cardsList = new Section({
-    items: initialCards,
+    // items: initialCards,
     renderer: (item) => {
       cardsList.addItem(createCard(item.name, item.link));
     },
@@ -67,56 +109,76 @@ const cardsList = new Section({
   cardsContainer
 );
 
-// загрузка карточек на страницу
-cardsList.renderItems();
+// // загрузка карточек на страницу
+// cardsList.renderItems();
 
 
 // форма добавления карточки
-const addCardForm = new PopupWithForm(
+const addCardPopup = new PopupWithForm(
   popupAddCard, {
     handleFormSubmit: () => {
       cardsList.addItem(createCard(titleInput.value, linkInput.value));
-      addCardForm.close();
+      addCardPopup.close();
       formAddCardValidator.resetValidation();
     },
   });
 // слушатели для формы добавления карточки
-addCardForm.setEventListeners();
+addCardPopup.setEventListeners();
 
 buttonAddCardItem.addEventListener("click", () => {
-  addCardForm.open();
+  addCardPopup.open();
   formAddCardValidator.resetValidation();
 });
 
+
+
+
+
+
+
+
+
+//===================================
+
 const userInfo = new UserInfo({
   username: profileName,
-  description: profileDescription,
+  about: profileDescription,
+  avatar: avatar
 });
 
 // создание попапа с формой редактирования профиля
 function fillEditProfileForm({
   username,
-  description
+  about
 }) {
   nameInput.value = username;
-  descriptionInput.value = description;
+  descriptionInput.value = about;
 }
 
 const editProfilePopup = new PopupWithForm(
   popupEditProfile, {
     handleFormSubmit: (dataForm) => {
-      userInfo.setUserInfo(dataForm);
-      editProfilePopup.close();
+      api.editUserInfo(dataForm)
+        .then((data) => {
+          console.log('data', data);
+          userInfo.setUserInfo(data);
+          editProfilePopup.close();
+        })
     },
   });
+
+
 editProfilePopup.setEventListeners();
 // Обработчик кнопки Edit попапа редактирования профиля
 buttonEditProfile.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
-  fillEditProfileForm({
-    username: info.username,
-    description: info.description,
-  });
+  fillEditProfileForm(info);
   editProfilePopup.open();
   formEditProfileValidator.resetValidation();
 });
+
+
+//добавление карточек по аналогии с редактированием профиля
+// редактировать аватар по аналогии с редактированием профиля
+//лайки просмотреть тред в слэке
+//удаление по аналогии с лайками

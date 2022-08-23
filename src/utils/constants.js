@@ -18,6 +18,14 @@ export const configCard = {
   likeClass: 'element__like-button_active'
 };
 
+export const configApi = {
+  url: "https://mesto.nomoreparties.co/v1/cohort-48",
+  headers: {
+    "content-type": "application/json",
+    "authorization": "b7525861-de9d-4d18-aacb-1e45dd5552b0",
+  }
+}
+
 export const initialCards = [{
   name: "США, Гранд-Каньон",
   link: "https://sun9-west.userapi.com/sun9-46/s/v1/if2/AkrtcCx1pqXactcR5KaY12NrzrMRF4GOe0ZyPPfFb9b6XoydDpNBMPyd7lKN-RuILR2JbesTbrmO4QwYjCSyOQrR.jpg?size=2560x1920&quality=95&type=album"
@@ -43,6 +51,7 @@ export const initialCards = [{
   link: "https://sun9-east.userapi.com/sun9-35/s/v1/if2/HuCCLn3a6vIqV035LyMD0B7XXXC0D091sF-FoUYk78R-SPuT_zmeYlo1RXiJ3GROALP92Z7WEtU8bALioJ9SwA_W.jpg?size=959x1280&quality=95&type=album"
 }
 ];
+
 export const cardsContainer = document.querySelector(".elements-list");
 export const buttonAddCardItem = document.querySelector('.profile__add-button');
 export const popupAddCard = document.querySelector('.popup-add-card');
@@ -57,3 +66,7 @@ export const profileDescription = document.querySelector('.profile__description'
 export const nameInput = document.querySelector('.popup__input_type_name');
 export const descriptionInput = document.querySelector('.popup__input_type_description');
 export const popupImage = document.querySelector('.popup_image');
+export const avatar = document.querySelector('.profile__avatar');
+export const buttonAvatar = document.querySelector('.profile__avatar-button');
+export const popupEditAvatar = document.querySelector('.popup-edit-avatar');
+export const formEditAvatar = popupEditAvatar.querySelector('.popup__form_edit-avatar');
