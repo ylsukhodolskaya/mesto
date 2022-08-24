@@ -15,7 +15,8 @@ export const configCard = {
   buttonDeleteSelector: '.element__delete-button',
   imageSelector: '.element__image',
   titleSelector: '.element__title',
-  likeClass: 'element__like-button_active'
+  likeClass: 'element__like-button_active',
+  likeCounter: '.element__like-counter'
 };
 
 export const configApi = {

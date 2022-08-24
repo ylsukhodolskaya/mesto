@@ -34,8 +34,18 @@ editUserInfo(data) {
 
 //============================================
 
+// Редактирование аватара
+editAvatar(data) {
+  return fetch(`${this._url}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: this._headers,
+    body: JSON.stringify({
+      avatar: data.avatar
+    })
+  }).then(res => this._parseResponse(res));
+}
 
-
+//=============================================
 
 
 // Получение карточек
@@ -53,6 +63,26 @@ addCard(data) {
       name: data.name,
       link: data.link
     })
+  }).then(res => this._parseResponse(res));
+}
+
+
+
+
+//=============================================
+// Ставим лайк
+setLike(cardId) {
+  return fetch(`${this._url}/cards/likes/${cardId}`, {
+    method: 'PUT',
+    headers: this._headers
+  }).then(res => this._parseResponse(res));
+}
+
+// Удаляем лайк
+deleteLike(cardId) {
+  return fetch(`${this._url}/cards/likes/${cardId}`, {
+    method: 'DELETE',
+    headers: this._headers
   }).then(res => this._parseResponse(res));
 }
 
