@@ -1,12 +1,16 @@
 export default class Card {
-  constructor(config, data, handler) {
+  constructor(config, data, isDelete, handler) {
     this._config = config;
     this._onClickImageHandler = handler.onClick;
     this._onLikeHandler = handler.onLike;
+    this._onDeleteHandler = handler.onDelete;
     this._data = data;
+    this._isDelete = isDelete;
+        // console.log('/////isDelete////', isDelete);
+
 
     //===============
-    
+
     this._cardElement = this._getTemplate();
     this._cardElement.querySelector(this._config.titleSelector).textContent = this._data.name;
     this._image = this._cardElement.querySelector(this._config.imageSelector);
@@ -19,6 +23,9 @@ export default class Card {
       this._cardElement.querySelector(this._config.buttonLikeSelector).classList.remove(classNameLiked);
     };
     this._cardElement.querySelector(this._config.likeCounter).textContent = this._data.likes.length;
+
+    this._deleteBtn = this._cardElement.querySelector(this._config.buttonDeleteSelector);
+    this._isOwnerCard();
     this._setEventListeners();
   }
 
@@ -34,8 +41,13 @@ export default class Card {
     return this._cardElement;
   }
 
-  //метод isOwner я или не я
-
+  // //метод isOwner я или не я
+  // проверить владельца карточки и убирать кнопку Delete
+  _isOwnerCard() {
+    if (!this._isDelete) {
+      this._deleteBtn.remove();
+    }
+  }
 
   //метод isLiked проверяет наличие лайка
   isLiked() {
@@ -44,6 +56,7 @@ export default class Card {
     })
   }
 
+  // метод слушателя лайка
   _handleLikeCard() {
     // вызов колбека, который пришёл снаружи
     this._onLikeHandler(
@@ -58,13 +71,9 @@ export default class Card {
           this._cardElement.querySelector(this._config.buttonLikeSelector).classList.remove(classNameLiked);
         }
         this._cardElement.querySelector(this._config.likeCounter).textContent = this._data.likes.length;
-    });
+      });
   }
 
-  // // метод слушателя лайка
-  // _handleLikeCard() {
-  //   this._cardElement.querySelector(this._config.buttonLikeSelector).classList.toggle(this._config.likeClass);
-  // }
 
   // метод слушателя кнопки удалить
   _handleDeleteCard() {
@@ -72,7 +81,7 @@ export default class Card {
     this._cardElement = null;
   }
 
-  
+
 
   //cлушатели
   _setEventListeners() {
@@ -82,8 +91,10 @@ export default class Card {
     });
 
     // кнопки delete
-    this._cardElement.querySelector(this._config.buttonDeleteSelector).addEventListener('click', () => {
-      this._handleDeleteCard();
+    this._deleteBtn.addEventListener('click', () => {
+      this._onDeleteHandler(this._data, () => {
+        this._handleDeleteCard();
+      });
     });
 
     // попапы с полноразмерными фотографиями
