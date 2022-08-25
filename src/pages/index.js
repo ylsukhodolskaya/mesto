@@ -67,7 +67,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     userId = userData._id;
     // console.log('//////userId/////', userId);
     userInfo.setAvatar(userData);
-    cardsList.renderItems(initialCards.slice().reverse(), userId);
+    cardsList.renderItems(initialCards.slice().reverse() /*, userId*/);
   })
   .catch((err) => {
     console.error(err);
@@ -92,13 +92,11 @@ const deleteCardPopup = new PopupWithConfirmation(popupDeleteCard);
 deleteCardPopup.setEventListeners();
 
 
-
-
 //===============================================
 //создание новой карточки
-function createCard(data, isDelete) {
+function createCard(data) {
   data.currentUser = userInfo.getUserInfo();
-  const card = new Card(configCard, data, isDelete, {
+  const card = new Card(configCard, data, userId, {
 
     onClick: () => {
       viewImagePopup.open(data)
@@ -146,16 +144,13 @@ function createCard(data, isDelete) {
 
 // отрисовка карточек из массива
 const cardsList = new Section({
-    // items: initialCards,
-    renderer: (item, isDelete) => {
-      cardsList.addItem(createCard(item, isDelete));
+    renderer: (item) => {
+      cardsList.addItem(createCard(item));
     },
   },
   cardsContainer
 );
 
-// // загрузка карточек на страницу
-// cardsList.renderItems();
 
 // форма добавления карточки
 const addCardPopup = new PopupWithForm(
@@ -166,7 +161,7 @@ const addCardPopup = new PopupWithForm(
       api.addCard(dataForm)
         .then((data) => {
           // console.log('data // форма добавления карточки', data);
-          cardsList.addItem(createCard(data, true));
+          cardsList.addItem(createCard(data));
           addCardPopup.close();
           formAddCardValidator.resetValidation();
         })

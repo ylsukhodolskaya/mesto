@@ -1,12 +1,12 @@
 export default class Card {
-  constructor(config, data, isDelete, handler) {
+  constructor(config, data, userId, handler) {
     this._config = config;
     this._onClickImageHandler = handler.onClick;
     this._onLikeHandler = handler.onLike;
     this._onDeleteHandler = handler.onDelete;
     this._data = data;
-    this._isDelete = isDelete;
-        // console.log('/////isDelete////', isDelete);
+    this._userId = userId;
+    this._cardDataOwnerId = this._data.owner._id;
 
 
     //===============
@@ -44,7 +44,7 @@ export default class Card {
   // //метод isOwner я или не я
   // проверить владельца карточки и убирать кнопку Delete
   _isOwnerCard() {
-    if (!this._isDelete) {
+    if (this._userId !== this._cardDataOwnerId) {
       this._deleteBtn.remove();
     }
   }
